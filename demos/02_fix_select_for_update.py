@@ -1,14 +1,3 @@
-"""
-Demo 2 — Fix: Pessimistic Locking (SELECT FOR UPDATE)
-
-SELECT ... FOR UPDATE acquires a row-level lock on the event row.
-Any other transaction trying to lock the same row will block until
-the first one commits or rolls back. This serializes the check-and-insert.
-
-Tradeoff: high contention → transactions queue up → lower throughput.
-Best when conflicts are frequent and you need strong guarantees.
-"""
-
 import threading
 import psycopg2
 import time
@@ -26,7 +15,6 @@ def buy_ticket_locked(user_id: int, results: list):
     conn.autocommit = False
     try:
         with conn.cursor() as cur:
-            # Lock the event row — blocks concurrent buyers until we commit
             cur.execute(
                 "SELECT capacity FROM events WHERE id = %s FOR UPDATE",
                 (EVENT_ID,),
@@ -53,7 +41,7 @@ def buy_ticket_locked(user_id: int, results: list):
                 results.append(f"User {user_id:>3}: DENIED  ({sold}/{capacity})")
     except Exception as e:
         conn.rollback()
-        results.append(f"User {user_id:>3}: ERROR — {e}")
+        results.append(f"User {user_id:>3}: ERROR - {e}")
     finally:
         conn.close()
 
@@ -88,7 +76,7 @@ def main():
 
     print(f"\nResult: {total} tickets sold for a {capacity}-seat event")
     assert total <= capacity, "BUG: oversold!"
-    print("No oversell — pessimistic locking works.")
+    print("No oversell - pessimistic locking works.")
 
 
 if __name__ == "__main__":

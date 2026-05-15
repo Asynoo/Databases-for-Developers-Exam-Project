@@ -1,16 +1,3 @@
-"""
-Demo 1 — The Problem: Race Condition / Overselling
-
-Two concurrent transactions both read the same available count,
-both decide there is room, and both insert a ticket. The event
-ends up with more tickets sold than its capacity.
-
-Pattern (naive):
-    1. SELECT count(*) FROM tickets WHERE event_id = ?   -- read
-    2. if count < capacity: INSERT INTO tickets ...       -- write
-    Steps 1 and 2 are NOT atomic: another transaction can slip in between.
-"""
-
 import threading
 import psycopg2
 import time
@@ -37,7 +24,6 @@ def buy_ticket_naive(user_id: int, results: list):
             cur.execute("SELECT capacity FROM events WHERE id = %s", (EVENT_ID,))
             capacity = cur.fetchone()[0]
 
-            # Artificial delay to widen the race window
             time.sleep(0.05)
 
             if sold < capacity:
@@ -52,7 +38,7 @@ def buy_ticket_naive(user_id: int, results: list):
                 results.append(f"User {user_id:>3}: DENIED  (saw {sold}/{capacity} sold)")
     except Exception as e:
         conn.rollback()
-        results.append(f"User {user_id:>3}: ERROR — {e}")
+        results.append(f"User {user_id:>3}: ERROR - {e}")
     finally:
         conn.close()
 
@@ -87,7 +73,7 @@ def main():
 
     print(f"\nResult: {total} tickets sold for a {capacity}-seat event")
     if total > capacity:
-        print("OVERSOLD — race condition confirmed!")
+        print("OVERSOLD - race condition confirmed!")
     else:
         print("No oversell this run (try again; timing-sensitive).")
 
