@@ -1,0 +1,25 @@
+Event capacity: 5  |  Concurrent buyers: 20
+
+User   1: DENIED  (sold out)
+User   2: BOUGHT  (1/5)
+User   3: BOUGHT  (2/5)
+User   4: DENIED  (sold out)
+User   5: DENIED  (sold out)
+User   6: BOUGHT  (4/5)
+User   7: DENIED  (sold out)
+User   8: DENIED  (sold out)
+User   9: DENIED  (sold out)
+User  10: DENIED  (sold out)
+User  11: DENIED  (sold out)
+User  12: DENIED  (sold out)
+User  13: DENIED  (sold out)
+User  14: DENIED  (sold out)
+User  15: DENIED  (sold out)
+User  16: DENIED  (sold out)
+User  17: BOUGHT  (5/5)
+User  18: DENIED  (sold out)
+User  19: BOUGHT  (3/5)
+User  20: DENIED  (sold out)
+
+Result: 5 tickets sold for a 5-seat event
+No oversell - DB constraint approach works.

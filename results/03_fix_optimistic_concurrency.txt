@@ -1,0 +1,25 @@
+Event capacity: 5  |  Concurrent buyers: 20
+
+User   1: DENIED  (5/5)
+User   2: BOUGHT  (attempt 3, version 3->4)
+User   3: DENIED  (5/5)
+User   4: DENIED  (5/5)
+User   5: DENIED  (5/5)
+User   6: DENIED  (5/5)
+User   7: BOUGHT  (attempt 1, version 0->1)
+User   8: BOUGHT  (attempt 3, version 4->5)
+User   9: DENIED  (5/5)
+User  10: BOUGHT  (attempt 2, version 2->3)
+User  11: DENIED  (5/5)
+User  12: DENIED  (5/5)
+User  13: DENIED  (5/5)
+User  14: DENIED  (5/5)
+User  15: DENIED  (5/5)
+User  16: DENIED  (5/5)
+User  17: DENIED  (5/5)
+User  18: DENIED  (5/5)
+User  19: DENIED  (5/5)
+User  20: BOUGHT  (attempt 1, version 1->2)
+
+Result: 5 tickets sold for a 5-seat event
+No oversell - optimistic concurrency control works.

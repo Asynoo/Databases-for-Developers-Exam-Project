@@ -1,0 +1,25 @@
+Event capacity: 5  |  Concurrent buyers: 20
+
+User   1: BOUGHT  (saw 0/5 sold)
+User   2: BOUGHT  (saw 1/5 sold)
+User   3: BOUGHT  (saw 0/5 sold)
+User   4: BOUGHT  (saw 0/5 sold)
+User   5: BOUGHT  (saw 2/5 sold)
+User   6: BOUGHT  (saw 0/5 sold)
+User   7: BOUGHT  (saw 0/5 sold)
+User   8: BOUGHT  (saw 2/5 sold)
+User   9: BOUGHT  (saw 2/5 sold)
+User  10: BOUGHT  (saw 2/5 sold)
+User  11: BOUGHT  (saw 0/5 sold)
+User  12: BOUGHT  (saw 1/5 sold)
+User  13: BOUGHT  (saw 2/5 sold)
+User  14: BOUGHT  (saw 2/5 sold)
+User  15: BOUGHT  (saw 3/5 sold)
+User  16: DENIED  (saw 6/5 sold)
+User  17: BOUGHT  (saw 2/5 sold)
+User  18: DENIED  (saw 5/5 sold)
+User  19: BOUGHT  (saw 0/5 sold)
+User  20: BOUGHT  (saw 0/5 sold)
+
+Result: 18 tickets sold for a 5-seat event
+OVERSOLD - race condition confirmed!
