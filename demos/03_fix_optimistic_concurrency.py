@@ -1,3 +1,15 @@
+"""
+Demo 3 - Fix: Optimistic Concurrency Control (version column)
+
+Instead of locking, each transaction reads a version number alongside the data.
+The write is a conditional UPDATE that only succeeds if the version is unchanged.
+If another transaction committed first, rowcount is 0 and the transaction retries.
+
+No lock is held during the read phase, so transactions don't block each other.
+This scales well when conflicts are rare, but degrades under high contention as
+retries increase.
+"""
+
 import threading
 import psycopg2
 import time

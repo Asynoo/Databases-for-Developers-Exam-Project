@@ -1,3 +1,16 @@
+"""
+Demo 1 - The Problem: Race Condition (Lost Update)
+
+The naive flow reads the current ticket count and then inserts a ticket in two
+separate steps. Because the read and write are not atomic, multiple transactions
+can pass the availability check before any of them commits - this is known as a
+lost update anomaly.
+
+PostgreSQL's default isolation level (READ COMMITTED) does not protect against
+this. Each statement sees the latest committed data, but the gap between the
+SELECT and the INSERT is unprotected.
+"""
+
 import threading
 import psycopg2
 import time

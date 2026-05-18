@@ -1,3 +1,16 @@
+"""
+Demo 4 - Fix: Database Constraint + Atomic Counter
+
+The events_safe table holds a denormalized tickets_sold counter and a CHECK
+constraint (tickets_sold <= capacity). The purchase is a single UPDATE that
+increments the counter; the constraint is evaluated atomically by PostgreSQL.
+
+This pushes the invariant into the schema itself, making it impossible to
+violate regardless of application logic or direct SQL access. An idempotency
+key (UUID UNIQUE) on the tickets table additionally prevents duplicate inserts
+from retries or double-clicks.
+"""
+
 import threading
 import psycopg2
 from config import DSN, NUM_USERS

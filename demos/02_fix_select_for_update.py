@@ -1,3 +1,15 @@
+"""
+Demo 2 - Fix: Pessimistic Locking (SELECT FOR UPDATE)
+
+SELECT FOR UPDATE acquires a row-level exclusive lock on the event row as soon
+as the transaction reads it. Any other transaction attempting to lock the same
+row will block until the first one commits or rolls back.
+
+This serializes all concurrent buyers through a single bottleneck, making the
+check-and-insert effectively atomic. The tradeoff is throughput: under high
+contention, transactions queue up and wait.
+"""
+
 import threading
 import psycopg2
 import time
